@@ -17,16 +17,18 @@ class FuncionarioController extends Controller
     }
 
     
-    public function cadFuncionario(Request $request){
-        $dadosValidos = $request -> validate([
-            'nome' => 'string|required',
-            'funcao' => 'string|required',
-            'fone' => 'string|required'
-        ]);
-        Funcionario::create($dadosValidos);
-        return Redirect::route('home');
+public function cadFuncionario(Request $request){
+    $dadosValidos = $request->validate([
+        'nome' => 'required|string',
+        'funcao' => 'required|string',
+        'fone' => 'required|string'
+    ]);
 
-    } 
+    Funcionario::create($dadosValidos);
+
+    return redirect()->route('home');
+}
+ 
     public function gerenciarFuncionario(Request $request){
         $dadosFuncionario = Funcionario::query();
 
@@ -43,7 +45,7 @@ class FuncionarioController extends Controller
       //GERENCIAR/SELECT/ MOSTRAR UM FUNCIONÁRIO EM ESPECÍFICO
       public function mostrarFuncionarioId(Funcionario $id){
 
-        return view('gerenciarFuncionario',['registrosFuncionarios' => $id]);
+        return view('formularioAlterarFuncionario',['registrosFuncionarios' => $id]);
 
     }
 
@@ -58,7 +60,7 @@ class FuncionarioController extends Controller
      public function alterarFuncionario(Funcionario $id, Request $request){
       $dadosValidos = $request -> validate([
         'nome' => 'string|required',
-        'email' => 'string|required',
+        'funcao' => 'string|required',
         'fone' => 'string|required'
     ]);
         $id -> fill($dadosValidos);

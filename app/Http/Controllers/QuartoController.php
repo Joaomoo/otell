@@ -34,15 +34,14 @@ class QuartoController extends Controller
         });
 
         $dadosQuarto = $dadosQuarto -> get();
-        return view('gerenciarFuncionario',['registrosFuncionarios' => $dadosQuarto]);
+        return view('gerenciarQuarto',['registrosQuartos' => $dadosQuarto]);
     }
 
       //GERENCIAR/SELECT/ MOSTRAR UM HÓSPEDE EM ESPECÍFICO
       public function mostrarQuartoId(Quarto $id){
-
-        return view('gerenciarQuarto',['registrosQuartos' => $id]);
-
+        return view('formularioAlterarQuarto', ['registroQuarto' => $id]);
     }
+    
 
      // DELETAR/APAGAR
      public function destroy(Quarto $id){
@@ -53,9 +52,9 @@ class QuartoController extends Controller
      // ALTERAR/EDITAR
      public function alterarQuarto(Quarto $id, Request $request){
      $dadosValidos = $request -> validate([
-        'nome' => 'string|required',
-        'email' => 'string|required',
-        'fone' => 'string|required'
+        'tipoQuarto' => 'string|required',
+        'numeroQuarto' => 'integer|required',
+        'valorDiaria' => 'numeric|required|regex:/^\d+(\.\d{1,2})?$/'
      ]);
      $id -> fill($dadosValidos);
      $id -> save(); 

@@ -33,21 +33,21 @@
     <tbody>
       @foreach($registrosFuncionarios as $registroFuncionarioArrayLoop )
       <tr>
-        <th scope="row">{{$registroFuncionarioArrayLoop -> id}}</th>
-        <td>{{$registroFuncionarioArrayLoop -> nome}}</td>
-        <td>{{$registroFuncionarioArrayLoop -> funcao}}</td>
+        <th scope="row">{{$registroFuncionarioArrayLoop->id}}</th>
+        <td>{{$registroFuncionarioArrayLoop->nome}}</td>
+        <td>{{$registroFuncionarioArrayLoop->funcao}}</td>
         <td>
-          <a href="">
-            <button type="button" class="btn btn-primary">✔️</button>
+          <a href="{{route('mostrar-funcionario', $registroFuncionarioArrayLoop->id)}}">
+            <button type="button" class="btn btn-primary">Editar</button>
           </a>
         </td>
         <td>
-          <form method='post' action="{{route( 'apagar-funcionario', $registroFuncionarioArrayLoop -> id)}}">
+          <form method='post' action="{{route('apagar-funcionario', $registroFuncionarioArrayLoop->id)}}">
             @method('delete')
             @csrf  
-            <button type="submit" class="btn btn-danger">❌</button>
-            </form>
-      </td>
+            <button type="submit" class="btn btn-danger">Excluir</button>
+          </form>
+        </td>
       </tr>
       @endforeach
     </tbody>

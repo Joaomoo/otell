@@ -37,9 +37,10 @@
         <th scope="row">{{$registroHospedeArrayLoop -> id}}</th>
         <td>{{$registroHospedeArrayLoop -> nome}}</td>
         <td>{{$registroHospedeArrayLoop -> email}}</td>
-        <td>{{$registroHospedeArrayLoop -> fone}}</td>
+        <td>{{ $registroHospedeArrayLoop->fone }}</td>
+
         <td>
-          <a href="">
+          <a href="{{route('mostrar-hospede', $registroHospedeArrayLoop -> id)}}">
             <button type="button" class="btn btn-primary">✔️</button>
           </a>
         </td>
